@@ -1,7 +1,7 @@
-function Next() {
+function Next({title}) {
   return (
     <div className="next">
-      <p>Next tanda: Di Sarli</p>
+      <p>Next tanda: {title}</p>
     </div>
   );
 }

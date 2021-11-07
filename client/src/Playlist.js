@@ -1,12 +1,11 @@
 import Song from './Song'
 
-function Playlist() {
+function Playlist({ tanda }) {
   return (
       <ul className="list-group">
-        <Song></Song>
-        <Song></Song>
-        <Song></Song>
-        <Song></Song>
+        {
+          tanda.map(song => <Song name={song}></Song>)
+        }
       </ul>
   )
 }
