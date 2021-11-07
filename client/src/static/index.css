@@ -1,0 +1,70 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background-color: #282c34;
+  color: aliceblue;
+}
+
+header {
+  margin: 5% 5%;
+}
+
+h1 {
+  color: aliceblue;
+  font-size: 64px;
+  margin: auto;
+}
+
+main {
+  margin-left: 3.5% !important;
+}
+
+.orchestra {
+  margin-left: 1%;
+}
+
+.orchestra img {
+  height: 400px;
+  width: 400px;
+}
+
+.songs {
+  height: 400px;
+}
+
+.songs ul {
+  height: 400px;
+}
+
+.songs ul div {
+  max-height: 100px;
+  height: inherit;
+  border: none;
+}
+
+.next {
+  font-size: 40px;
+  margin-left: 1%;
+  margin-top: 2%;
+}
+
+.song {
+  background-color: transparent;
+}
+.song * {
+  margin: auto;
+  color: aliceblue;
+}
+
+.songtitle {
+  margin: auto;
+  font-size: 36px; 
+}
+
+.songs img {
+  border: 1px solid black;
+  border-radius: 10%;
+  width: 80px;
+  height: 80px;
+  margin-left: 0%;
+}
