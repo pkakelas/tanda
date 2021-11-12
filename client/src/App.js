@@ -16,7 +16,7 @@ function App() {
 
   const updatePlayerState = async () => {
     const res = await axios.get(SERVER_URL)
-    const { tanda, current_song, current_orchestra, next_tanda } = res.data
+    const { tanda, current_song, current_orchestra, next_tanda, is_cortina } = res.data
 
     setTanda(tanda)
     setNow(current_song)
