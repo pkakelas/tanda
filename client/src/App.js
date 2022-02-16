@@ -1,52 +1,69 @@
 import Now from './Now'
-import pugliese from './static/pugliese.jpeg'
-import Playlist from './Playlist';
+import Ribbon from './Ribbon';
 import Next from './Next'
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useEffect } from 'react';
 
 const SERVER_URL = 'http://localhost:8080/state'
 const RUN_EVERY_MS = 5 * 1000
 
-function App() {
-  const [ now, setNow ] = useState(0)
-  const [ next, setNext ] = useState(0)
-  const [ tanda, setTanda ]= useState(0)
-  const [ orchestra, setOrchestra ]= useState(0)
-
-  const updatePlayerState = async () => {
-    const res = await axios.get(SERVER_URL)
-    const { tanda, current_song, current_orchestra, next_tanda, is_cortina } = res.data
-
-    setTanda(tanda)
-    setNow(current_song)
-    setNext(next_tanda)
-    setOrchestra(current_orchestra)
+const state = {
+  paused: false,
+  isCortina: false,
+  announcement: false,//"This is an announcement",
+  now: {
+    genre: "tango", // tango / vals / milonga / cortina
+    name: "La Yumba",
+    artist: "Pugliese",
+  },
+  songX: 1,
+  songY: 4,
+  next: {
+      genre: "Tango",
+      artist: "Pugliese",
   }
+}
 
-  useEffect(() => {
-    const handle = setInterval(updatePlayerState, RUN_EVERY_MS);   
+function App({ theme }) {
 
-    return () => clearInterval(handle)
-  })
+  // TODO: Handle className change according to theme
+  //['announcement', "afterCumparsita"]
 
-
-  return (
-    <div>
-        <Now title={now || "Nothing Yet"} orchestra={orchestra || "None"}></Now>
-      <main className="main container-fluid">
-        <div class="row">
-          <div class="orchestra col-sm-3">
-              <img src={pugliese} className="rounded"></img>
-          </div>
-          <div class="songs col-sm-6">
-            <Playlist tanda={tanda || []}></Playlist>
+    if (state.paused) {
+      return (
+        <div id='overlay'>
+          <div id="playerStoppedPaused" className={theme}></div>
+        </div>
+      )
+    }
+    if (state.isCortina) {
+      return (
+        <div id='overlay'>
+          <div id="cortina" className={theme}>
+            <div id="upNext">Up&nbsp;&nbsp;next...</div>
+            <div id="cortinaNextTandaGenre"></div>
+            <div id="cortinaNextTandaArtist"></div>
           </div>
         </div>
-        <Next title={next || "Nothing"}></Next>
-      </main>
-    </div>
-  );
+      )
+    }
+    if (state.announcement) {
+      return (
+        <div id='overlay'>
+          <div id="announcement" className={theme}>
+            <div id="announcementText">{state.announcement}</div>
+          </div>
+        </div>
+      )
+    }
+
+    return (
+      <div id="nowNext">
+        <Now name={state.now.name} artist={state.now.artist} genre={state.now.genre} theme={theme}></Now>
+        <Next artist={state.next.artist} genre={state.next.genre} theme={theme}></Next>
+
+        <Ribbon songX={state.songX} songY={state.songY} theme={theme}></Ribbon>
+      </div>
+    )
 }
 
 export default App;

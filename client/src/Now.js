@@ -1,9 +1,10 @@
-function Now({ orchestra, title }) {
+function Now({ genre, artist, name, theme }) {
   return (
-    <div class="playing-now">
-      <h1>Current Orchestra: {orchestra}</h1>
-      <h1>Playing Now: {title}</h1>
-    </div>
+      <div id="nowPlaying" className={theme}>
+        <div id="nowPlayingGenre">{genre}</div>
+        <div id="nowPlayingArtist">{artist}</div>
+        <div id="nowPlayingName">{name}</div>
+      </div>
   )
 }
 

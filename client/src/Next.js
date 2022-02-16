@@ -1,7 +1,10 @@
-function Next({title}) {
+function Next({ artist, genre, theme}) {
   return (
-    <div className="next">
-      <p>Next tanda: {title}</p>
+    <div id="nextTanda" className={theme}>
+      <div>
+        <span id="nextTandaArtist"><strong>Next tanda: </strong>{artist}</span>
+        <span id="nextTandaGenre">   ({genre})</span>
+      </div>
     </div>
   );
 }
