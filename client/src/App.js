@@ -1,15 +1,16 @@
 import Now from './Now'
 import Ribbon from './Ribbon';
 import Next from './Next'
-import { useEffect } from 'react';
+import Bandoneon from './static/bandoneon.jpg';
 
 const SERVER_URL = 'http://localhost:8080/state'
 const RUN_EVERY_MS = 5 * 1000
 
 const state = {
+  announcement: false, // "This is an announcement",
+  done: false,
   paused: false,
-  isCortina: true,
-  announcement: false, //"This is an announcement",
+  isCortina: false,
   now: {
     genre: "tango", // tango / vals / milonga / cortina
     name: "La Yumba",
@@ -18,7 +19,7 @@ const state = {
   songX: 1,
   songY: 4,
   next: {
-      genre: "Tango",
+      genre: "tango", 
       artist: "Pugliese",
   }
 }
@@ -37,10 +38,19 @@ function App({ theme }) {
         </div>
       )
     }
+    if (state.done) {
+      return (
+        <div id='overlay'>
+          <div id="afterCumparsita">Thank you for dancing!</div>
+        </div>
+      )
+    }
     if (state.paused) {
       return (
         <div id='overlay'>
-          <div id="playerStoppedPaused" className={theme}></div>
+          <div id="playerStoppedPaused" className={theme}>
+            <img src={Bandoneon}></img>
+          </div>
         </div>
       )
     }
@@ -48,7 +58,7 @@ function App({ theme }) {
       return (
         <div id='overlay'>
           <div id="cortina" className={theme}>
-            <div id="upNext">Up&nbsp;&nbsp;next...</div>
+            <div id="upNext">Up next...</div>
             <div id="cortinaNextTandaGenre">{state.next.genre}</div>
             <div id="cortinaNextTandaArtist">{state.next.artist}</div>
           </div>
