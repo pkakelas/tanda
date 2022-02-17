@@ -3,9 +3,6 @@ import Ribbon from './Ribbon';
 import Next from './Next'
 import Bandoneon from './static/bandoneon.jpg';
 
-const SERVER_URL = 'http://localhost:8080/state'
-const RUN_EVERY_MS = 5 * 1000
-
 const state = {
   announcement: false, // "This is an announcement",
   done: false,
@@ -25,7 +22,6 @@ const state = {
 }
 
 function App({ theme }) {
-
   // TODO: Handle className change according to theme
   //['announcement', "afterCumparsita"]
 

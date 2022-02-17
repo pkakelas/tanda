@@ -3,7 +3,10 @@ import './static/index.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 import App from './App';
+import Webmaster from './Webmaster';
 
 const theme = 'themeValentine'
 
@@ -13,7 +16,12 @@ document.body.className = theme
 
 ReactDOM.render(
   <React.StrictMode>
-    <App theme={theme} />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App theme={theme} />} />
+        <Route path="/dj" element={<Webmaster />} />
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
