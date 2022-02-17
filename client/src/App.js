@@ -8,8 +8,8 @@ const RUN_EVERY_MS = 5 * 1000
 
 const state = {
   paused: false,
-  isCortina: false,
-  announcement: false,//"This is an announcement",
+  isCortina: true,
+  announcement: false, //"This is an announcement",
   now: {
     genre: "tango", // tango / vals / milonga / cortina
     name: "La Yumba",
@@ -28,6 +28,15 @@ function App({ theme }) {
   // TODO: Handle className change according to theme
   //['announcement', "afterCumparsita"]
 
+    if (state.announcement) {
+      return (
+        <div id='overlay'>
+          <div id="announcement" className={theme}>
+            <div id="announcementText">{state.announcement}</div>
+          </div>
+        </div>
+      )
+    }
     if (state.paused) {
       return (
         <div id='overlay'>
@@ -40,17 +49,8 @@ function App({ theme }) {
         <div id='overlay'>
           <div id="cortina" className={theme}>
             <div id="upNext">Up&nbsp;&nbsp;next...</div>
-            <div id="cortinaNextTandaGenre"></div>
-            <div id="cortinaNextTandaArtist"></div>
-          </div>
-        </div>
-      )
-    }
-    if (state.announcement) {
-      return (
-        <div id='overlay'>
-          <div id="announcement" className={theme}>
-            <div id="announcementText">{state.announcement}</div>
+            <div id="cortinaNextTandaGenre">{state.next.genre}</div>
+            <div id="cortinaNextTandaArtist">{state.next.artist}</div>
           </div>
         </div>
       )
